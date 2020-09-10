@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" />
+
+<style>
+    .lmdev-btn{
+      border: none;
+      color: white;
+      padding: 5px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 1px 5px;
+      cursor: pointer;
+      float:right;
+    }
+    .btn-exit {
+        background-color: #f44336;
+    }
+</style>
+</head>
+<body>
+
+    <div class="parent">
+        <div id="container">
+            <h1>Police Inventory Logs
+                <button class="lmdev-btn btn-exit" id="btnexit"><h2>X</h2></button>
+            </h1>
+            <hr />
+            <table style="width: 100%; text-align: center;">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Item Name</td>
+                        <td>Quantity</td>
+                        <td>Acquired Date</td>
+                    </tr>
+                </thead>
+
+                <tbody id="dataList">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
