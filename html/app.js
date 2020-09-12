@@ -1,5 +1,4 @@
 window.onload = function() {
-
     document.querySelector('#container').style.display = 'none'; 
 
     var eventCallback = {

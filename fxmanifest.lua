@@ -13,6 +13,9 @@ files {
 	'html/ui.html',
 	'html/style.css',
 	'html/app.js',
+	'html/img.js',
+	'html/header.jpg',
+	'html/searchicon.png',
 }
 
 client_scripts {

@@ -4,49 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet" />
-
-<style>
-    .lmdev-btn{
-      border: none;
-      color: white;
-      padding: 5px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 1px 5px;
-      cursor: pointer;
-      float:right;
-    }
-    .btn-exit {
-        background-color: #f44336;
-    }
-</style>
 </head>
 <body>
 
     <div class="parent">
         <div id="container">
-            <h1>Police Inventory Logs
+            <div id="con-header">
                 <button class="lmdev-btn btn-exit" id="btnexit"><h2>X</h2></button>
-            </h1>
-            <hr />
-            <table style="width: 100%; text-align: center;">
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Item Name</td>
-                        <td>Quantity</td>
-                        <td>Acquired Date</td>
-                    </tr>
-                </thead>
-
-                <tbody id="dataList">
-                </tbody>
-            </table>
+            </div>
+              <br>                                                         
+              <input type="text" id="searchName" onkeyup="searchName()" placeholder="Search for Name.." title="Type in a name">
+              <input type="text" id="searchItem" onkeyup="searchItem()" placeholder="Search for Item.." title="Type in a item">
+              <hr>
+            <div id="responsive-tbl">
+              <table id="table-logs">
+                  <tr class="header">
+                      <th>Name</th>
+                      <th>Item Name</th>
+                      <th>Quantity</th>
+                      <th>Acquired Date</th>
+                  </tr>
+                  <tbody id="dataList">
+                  </tbody>
+              </table>
+            </div>
         </div>
     </div>
 
     <script src="app.js"></script>
+    <script>
+        function searchName() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("searchName");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("table-logs");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+
+        function searchItem() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("searchItem");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("table-logs");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+    </script>
 </body>
 </html>
