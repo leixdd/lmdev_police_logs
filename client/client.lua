@@ -30,7 +30,16 @@ AddEventHandler('ViewLogs', function(allowed)
         SendNUIMessage({ action = 'viewLogs', on = isView })
 
     else 
-        exports['mythic_notify']:DoHudText('error', 'Only High rank officials could access this')
+       -- exports['mythic_notify']:DoHudText('error', 'Only High rank officials could access this')
+       TriggerEvent("pNotify:SendNotification", {text = "Only High rank officials could access this",
+       layout = "centerLeft",
+       timeout = 2000,
+       progressBar = false,
+       type = "error",
+       animation = {
+           open = "gta_effects_fade_in",
+           close = "gta_effects_fade_out"
+       }})
     end
 
 end)
@@ -39,7 +48,16 @@ RegisterNetEvent('sent_police_logs')
 AddEventHandler('sent_police_logs', function(res)
     
     if(res == false) then
-        exports['mythic_notify']:DoHudText('error', 'Only High rank officials could access this')
+     --   exports['mythic_notify']:DoHudText('error', 'Only High rank officials could access this')
+     TriggerEvent("pNotify:SendNotification", {text = "Only High rank officials could access this",
+     layout = "centerLeft",
+     timeout = 2000,
+     progressBar = false,
+     type = "error",
+     animation = {
+         open = "gta_effects_fade_in",
+         close = "gta_effects_fade_out"
+     }})
     else 
         SendNUIMessage({ action = 'policeLogs', result = json.encode(res) })
        -- SetNuiFocus(true, true)
