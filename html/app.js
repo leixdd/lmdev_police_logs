@@ -26,7 +26,9 @@ window.onload = function() {
 
             var el = document.querySelector('#dataList');
             el.innerHTML = "";
-
+            
+            res = Array.isArray(res) ? res : [];
+            
             res.map(function(d) {
                 el.innerHTML +=  '<tr><td>' + d.NAME +'</td><td>' + d.item_name +'</td><td>' + d.quantity +'</td><td>' + new Date( d.created_at).toString() +'</td></tr>';
             })
