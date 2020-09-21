@@ -2,7 +2,8 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-function createLog(identifier, item_name, inventory_name, quantity) 
+function createLog(identifier, item_name, inventory_name, quantity, remaining_item) 
+
 	MySQL.Async.execute('INSERT INTO lmdev_inv_items(identifier, item_name, inventory_name, quantity) VALUES (@i, @item, @inventory_name, @q)', {
 		['@inventory_name'] = inventory_name,
 		['@item']      = item_name,
@@ -28,7 +29,15 @@ RegisterServerEvent("esx_policejob:getStockItem")
 AddEventHandler("esx_policejob:getStockItem", function(itemName, count)
     local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
-	createLog(xPlayer.getIdentifier(), itemName, 'society_police', count)
+
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_police', function(inventory)
+		local inventoryItem = inventory.getItem(itemName)
+
+		-- is there enough in the society?
+		if count > 0 and inventoryItem.count >= count then
+			createLog(xPlayer.getIdentifier(), itemName, 'society_police', count, (inventoryItem.count - count))
+		end
+	end)
 end)
 
 RegisterServerEvent("lmdev:get_police_logs")
